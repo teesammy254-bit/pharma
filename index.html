@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pharma Research Supply – Premium Lab-Grade Solvents & Reagents</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0f0f12;
+            --card: #1a1a1e;
+            --text: #e0e0e5;
+            --accent: #00d4ff;
+            --border: #2a2a2e;
+            --success: #00ff9d;
+            --warning: #ffb800;
+            --danger: #ff4d4d;
+            --muted: #888;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        a { color: var(--accent); text-decoration: none; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+        /* Header */
+        header {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top:0; z-index:100;
+        }
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 0;
+        }
+        .logo {
+            font-weight: 700; font-size: 1.5rem; color: var(--accent);
+        }
+        .nav-links {
+            display: flex; gap: 2rem;
+        }
+        .nav-links a {
+            font-weight: 500; transition: color .2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        /* Hero */
+        .hero {
+            padding: 5rem 0 3rem; text-align: center;
+            background: linear-gradient(135deg, #0a0a0c, #1a1a1e);
+        }
+        .hero h1 {
+            font-size: 3rem; margin-bottom: .5rem;
+            background: linear-gradient(90deg, #00d4ff, #00ff9d);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.2rem; opacity: .9; max-width: 800px; margin: 0 auto 2rem; }
+        /* Info Cards */
+        .cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;
+        }
+        .info-card {
+            background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+            padding: 1.5rem; text-align: center; transition: transform .2s;
+        }
+        .info-card:hover { transform: translateY(-4px); }
+        .info-card i { font-size: 2rem; color: var(--accent); margin-bottom: .75rem; }
+        .info-card h3 { font-size: 1.1rem; margin-bottom: .5rem; color: var(--success); }
+        /* Products Grid */
+        .section { padding: 3rem 0; }
+        .section-title {
+            font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;
+            background: linear-gradient(90deg, #00d4ff, #00ff9d);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .products-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;
+        }
+        .product-card {
+            background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+            overflow: hidden; transition: all .3s;
+        }
+        .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 24px rgba(0,0,0,.3); }
+        .product-img {
+            height: 180px; background: #2a2a2e; display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; color: var(--muted);
+        }
+        .product-body {
+            padding: 1rem;
+        }
+        .product-title {
+            font-weight: 600; font-size: 1.1rem; margin-bottom: .5rem;
+        }
+        .product-spec {
+            font-size: .85rem; color: var(--muted); margin-bottom: .75rem;
+        }
+        .price {
+            font-weight: 700; color: var(--success); font-size: 1.2rem;
+        }
+        .min-order {
+            font-size: .75rem; color: var(--warning); margin-top: .25rem;
+        }
+        .order-btn {
+            width: 100%; margin-top: 1rem; padding: .75rem;
+            background: var(--accent); color: #000; font-weight: 600;
+            border: none; border-radius: 8px; cursor: pointer; transition: .2s;
+        }
+        .order-btn:hover { background: #00ff9d; }
+        
+        
+        
+        /* Modal */
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,.8); overflow: auto;
+        }
+        .modal-content {
+            background: var(--card); margin: 5% auto; padding: 2rem; width: 90%; max-width: 800px;
+            border-radius: 12px; border: 1px solid var(--border);
+        }
+        .close { float: right; font-size: 1.8rem; cursor: pointer; color: var(--muted); }
+        .close:hover { color: var(--danger); }
+        /* Form */
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: .5rem; font-weight: 500; }
+        input, select, textarea {
+            width: 100%; padding: .75rem; background: #2a2a2e; border: 1px solid var(--border);
+            border-radius: 8px; color: var(--text); font-size: 1rem;
+        }
+        .escrow-info {
+            background: #1e2a38; padding: 1rem; border-radius: 8px; margin: 1rem 0;
+            font-size: .9rem; border-left: 4px solid var(--accent);
+        }
+        .btc-address {
+            background: #2a2a2e; padding: .75rem; border-radius: 8px; font-family: monospace;
+            word-break: break-all; margin: 1rem 0;
+            word-break: break-all; /* Forces full display without cutoff */
+            overflow-wrap: anywhere; /* Handles long strings on mobile */
+            font-size: 0.95rem; /* Slightly smaller for better fit */
+            line-height: 1.4; /* Improves readability */
+        }
+        .submit-btn {
+            background: var(--success); color: #000; padding: .75rem 1.5rem;
+            border: none; border-radius: 8px; font-weight: 600; cursor: pointer;
+        }
+        /* Reviews */
+        .reviews {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;
+            margin-top: 2rem;
+        }
+        .review {
+            background: var(--card); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);
+        }
+        .review-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem;
+        }
+        .review-name { font-weight: 600; }
+        .stars { color: #ffd700; }
+        .review-text { font-size: .9rem; opacity: .9; }
+        /* Vendors */
+        .vendors-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;
+        }
+        .vendor-card {
+            background: var(--card); padding: 1rem; border-radius: 12px; text-align: center;
+            border: 1px solid var(--border);
+        }
+        .vendor-avatar {
+            width: 60px; height: 60px; border-radius: 50%; background: #2a2a2e; margin: 0 auto .75rem;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--accent);
+        }
+        /* Footer */
+        footer {
+            background: var(--card); border-top: 1px solid var(--border); padding: 2rem 0; text-align: center;
+            margin-top: 3rem;
+        }
+        footer a { margin: 0 .5rem; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { gap: 1rem; font-size: .9rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">The Pharma Research</div>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#products">Products</a>
+                    <a href="#vendors">Vendors</a>
+                    <a href="#reviews">Reviews</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Premium Research-Grade Chemicals</h1>
+            <p>Lab-certified solvents, acids, bases, and reagents for advanced pharmaceutical and chemical research. Discreet worldwide shipping in 2–6 business days.</p>
+            <div class="cards">
+                <div class="info-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>100% Anonymous</h3>
+                    <p>No logs. No KYC. No personal data stored.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>2–6 Day Shipping</h3>
+                    <p>Stealth packaging from Canada, USA, EU, AU.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Escrow Protected</h3>
+                    <p>Funds held until delivery confirmed.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-vial"></i>
+                    <h3>Research Grade</h3>
+                    <p>HPLC, GC, ACS purity. COA available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Products -->
+    <section class="section" id="products">
+        <div class="container">
+            <h2 class="section-title">Research Products</h2>
+            <!-- Solvents -->
+            <h3 style="margin: 2rem 0 1rem; color: var(--accent);">Solvents</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Acetone</div>
+                        <div class="product-spec">ACS reagent, ≥99.5%, 500 mL</div>
+                        <div class="price">$25.00 / 500 mL</div>
+                        <div class="min-order">Min: 7 × 500 mL = $175</div>
+                        <button class="order-btn" onclick="openOrder('Acetone', 'ACS reagent, ≥99.5%, 500 mL', 25, 500, 7)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Acetonitrile</div>
+                        <div class="product-spec">HPLC grade, ≥99.9%, 1 L</div>
+                        <div class="price">$45.00 / L</div>
+                        <div class="min-order">Min: 4 L = $180</div>
+                        <button class="order-btn" onclick="openOrder('Acetonitrile', 'HPLC grade, ≥99.9%, 1 L', 45, 1000, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-skull-crossbones"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Chloroform</div>
+                        <div class="product-spec">Stabilized, ACS, ≥99.8%, 1 L</div>
+                        <div class="price">$35.00 / L</div>
+                        <div class="min-order">Min: 5 L = $175</div>
+                        <button class="order-btn" onclick="openOrder('Chloroform', 'Stabilized, ACS, ≥99.8%, 1 L', 35, 1000, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Dichloromethane</div>
+                        <div class="product-spec">HPLC grade, ≥99.8%, 1 L</div>
+                        <div class="price">$28.00 / L</div>
+                        <div class="min-order">Min: 6 L = $168</div>
+                        <button class="order-btn" onclick="openOrder('Dichloromethane', 'HPLC grade, ≥99.8%, 1 L', 28, 1000, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-fire"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Diethyl Ether</div>
+                        <div class="product-spec">Anhydrous, ≥99.0%, 1 L</div>
+                        <div class="price">$55.00 / L</div>
+                        <div class="min-order">Min: 3 L = $165</div>
+                        <button class="order-btn" onclick="openOrder('Diethyl Ether', 'Anhydrous, ≥99.0%, 1 L', 55, 1000, 3)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Dimethylformamide (DMF)</div>
+                        <div class="product-spec">≥99.8%, ACS, 1 L</div>
+                        <div class="price">$32.00 / L</div>
+                        <div class="min-order">Min: 6 L = $192</div>
+                        <button class="order-btn" onclick="openOrder('DMF', '≥99.8%, ACS, 1 L', 32, 1000, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-wine-bottle"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Ethanol</div>
+                        <div class="product-spec">200 proof, ACS, 1 L</div>
+                        <div class="price">$22.00 / L</div>
+                        <div class="min-order">Min: 8 L = $176</div>
+                        <button class="order-btn" onclick="openOrder('Ethanol', '200 proof, ACS, 1 L', 22, 1000, 8)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-leaf"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Ethyl Acetate</div>
+                        <div class="product-spec">HPLC grade, ≥99.8%, 1 L</div>
+                        <div class="price">$30.00 / L</div>
+                        <div class="min-order">Min: 6 L = $180</div>
+                        <button class="order-btn" onclick="openOrder('Ethyl Acetate', 'HPLC grade, ≥99.8%, 1 L', 30, 1000, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-gas-pump"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Hexane</div>
+                        <div class="product-spec">HPLC grade, ≥99%, 1 L</div>
+                        <div class="price">$40.00 / L</div>
+                        <div class="min-order">Min: 5 L = $200</div>
+                        <button class="order-btn" onclick="openOrder('Hexane', 'HPLC grade, ≥99%, 1 L', 40, 1000, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-prescription-bottle"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Methanol</div>
+                        <div class="product-spec">HPLC grade, ≥99.9%, 1 L</div>
+                        <div class="price">$26.00 / L</div>
+                        <div class="min-order">Min: 7 L = $182</div>
+                        <button class="order-btn" onclick="openOrder('Methanol', 'HPLC grade, ≥99.9%, 1 L', 26, 1000, 7)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-ring"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Tetrahydrofuran (THF)</div>
+                        <div class="product-spec">Inhibitor-free, HPLC, 1 L</div>
+                        <div class="price">$48.00 / L</div>
+                        <div class="min-order">Min: 4 L = $192</div>
+                        <button class="order-btn" onclick="openOrder('THF', 'Inhibitor-free, HPLC, 1 L', 48, 1000, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-industry"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Toluene</div>
+                        <div class="product-spec">ACS reagent, ≥99.5%, 1 L</div>
+                        <div class="price">$33.00 / L</div>
+                        <div class="min-order">Min: 5 L = $165</div>
+                        <button class="order-btn" onclick="openOrder('Toluene', 'ACS reagent, ≥99.5%, 1 L', 33, 1000, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Acetonitrile with 0.1% Formic Acid</div>
+                        <div class="product-spec">LC/MS grade, 1 L</div>
+                        <div class="price">$65.00 / L</div>
+                        <div class="min-order">Min: 3 L = $195</div>
+                        <button class="order-btn" onclick="openOrder('Acetonitrile w/ Formic Acid', 'LC/MS grade, 1 L', 65, 1000, 3)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Dichloromethane (stabilized, for GC Headspace)</div>
+                        <div class="product-spec">1 L</div>
+                        <div class="price">$52.00 / L</div>
+                        <div class="min-order">Min: 4 L = $208</div>
+                        <button class="order-btn" onclick="openOrder('DCM GC Headspace', 'Stabilized, 1 L', 52, 1000, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-wine-bottle"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Ethanol (bio-based, 95%, denatured)</div>
+                        <div class="product-spec">1 L</div>
+                        <div class="price">$18.00 / L</div>
+                        <div class="min-order">Min: 10 L = $180</div>
+                        <button class="order-btn" onclick="openOrder('Ethanol Bio', '95% denatured, 1 L', 18, 1000, 10)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Isopropanol</div>
+                        <div class="product-spec">HPLC grade, ≥99.7%, 1 L</div>
+                        <div class="price">$29.00 / L</div>
+                        <div class="min-order">Min: 6 L = $174</div>
+                        <button class="order-btn" onclick="openOrder('Isopropanol', 'HPLC ≥99.7%, 1 L', 29, 1000, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">N,N-Dimethylacetamide (DMAC)</div>
+                        <div class="product-spec">≥99.5%, 1 L</div>
+                        <div class="price">$42.00 / L</div>
+                        <div class="min-order">Min: 4 L = $168</div>
+                        <button class="order-btn" onclick="openOrder('DMAC', '≥99.5%, 1 L', 42, 1000, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">1,4-Dioxane</div>
+                        <div class="product-spec">ACS stabilized, ≥99.0%, 1 L</div>
+                        <div class="price">$38.00 / L</div>
+                        <div class="min-order">Min: 5 L = $190</div>
+                        <button class="order-btn" onclick="openOrder('1,4-Dioxane', 'ACS ≥99.0%, 1 L', 38, 1000, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Cyclohexane</div>
+                        <div class="product-spec">HPLC grade, ≥99.5%, 1 L</div>
+                        <div class="price">$31.00 / L</div>
+                        <div class="min-order">Min: 6 L = $186</div>
+                        <button class="order-btn" onclick="openOrder('Cyclohexane', 'HPLC ≥99.5%, 1 L', 31, 1000, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Pyridine</div>
+                        <div class="product-spec">ACS reagent, ≥99.0%, 500 mL</div>
+                        <div class="price">$24.00 / 500 mL</div>
+                        <div class="min-order">Min: 7 × 500 mL = $168</div>
+                        <button class="order-btn" onclick="openOrder('Pyridine', 'ACS ≥99.0%, 500 mL', 24, 500, 7)">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Acids -->
+            <h3 style="margin: 2rem 0 1rem; color: var(--accent);">Acids</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-burn"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Acetic Acid</div>
+                        <div class="product-spec">Glacial, ≥99.7%, ACS, 1 L</div>
+                        <div class="price">$20.00 / L</div>
+                        <div class="min-order">Min: 9 L = $180</div>
+                        <button class="order-btn" onclick="openOrder('Acetic Acid', 'Glacial ACS, 1 L', 20, 1000, 9)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Hydrochloric Acid</div>
+                        <div class="product-spec">37%, ACS, 1 L</div>
+                        <div class="price">$15.00 / L</div>
+                        <div class="min-order">Min: 11 L = $165</div>
+                        <button class="order-btn" onclick="openOrder('HCl', '37% ACS, 1 L', 15, 1000, 11)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-radiation"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Nitric Acid</div>
+                        <div class="product-spec">70%, trace metal grade, 500 mL</div>
+                        <div class="price">$28.00 / 500 mL</div>
+                        <div class="min-order">Min: 6 × 500 mL = $168</div>
+                        <button class="order-btn" onclick="openOrder('Nitric Acid', '70% trace metal, 500 mL', 28, 500, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-bolt"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Phosphoric Acid</div>
+                        <div class="product-spec">85%, ACS, 500 mL</div>
+                        <div class="price">$22.00 / 500 mL</div>
+                        <div class="min-order">Min: 8 × 500 mL = $176</div>
+                        <button class="order-btn" onclick="openOrder('Phosphoric Acid', '85% ACS, 500 mL', 22, 500, 8)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-bolt"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Sulfuric Acid</div>
+                        <div class="product-spec">95-98%, ACS, 500 mL</div>
+                        <div class="price">$18.00 / 500 mL</div>
+                        <div class="min-order">Min: 10 × 500 mL = $180</div>
+                        <button class="order-btn" onclick="openOrder('Sulfuric Acid', '95-98% ACS, 500 mL', 18, 500, 10)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-vial"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Formic Acid</div>
+                        <div class="product-spec">98%, ≥98.0%, 500 mL</div>
+                        <div class="price">$25.00 / 500 mL</div>
+                        <div class="min-order">Min: 7 × 500 mL = $175</div>
+                        <button class="order-btn" onclick="openOrder('Formic Acid', '98% ≥98.0%, 500 mL', 25, 500, 7)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-vial"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Hydrofluoric Acid</div>
+                        <div class="product-spec">48-51%, semiconductor grade, 100 mL</div>
+                        <div class="price">$45.00 / 100 mL</div>
+                        <div class="min-order">Min: 4 × 100 mL = $180</div>
+                        <button class="order-btn" onclick="openOrder('HF Acid', '48-51% semiconductor, 100 mL', 45, 100, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-vial"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Perchloric Acid</div>
+                        <div class="product-spec">70%, ACS, 100 mL</div>
+                        <div class="price">$35.00 / 100 mL</div>
+                        <div class="min-order">Min: 5 × 100 mL = $175</div>
+                        <button class="order-btn" onclick="openOrder('Perchloric Acid', '70% ACS, 100 mL', 35, 100, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-vial"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Trifluoroacetic Acid (TFA)</div>
+                        <div class="product-spec">≥99.0%, 100 mL</div>
+                        <div class="price">$30.00 / 100 mL</div>
+                        <div class="min-order">Min: 6 × 100 mL = $180</div>
+                        <button class="order-btn" onclick="openOrder('TFA', '≥99.0%, 100 mL', 30, 100, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Boric Acid</div>
+                        <div class="product-spec">≥99.5%, 500 g</div>
+                        <div class="price">$12.00 / 500 g</div>
+                        <div class="min-order">Min: 14 × 500 g = $168</div>
+                        <button class="order-btn" onclick="openOrder('Boric Acid', '≥99.5%, 500 g', 12, 500, 14)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Citric Acid</div>
+                        <div class="product-spec">Monohydrate, ≥99.5%, 500 g</div>
+                        <div class="price">$14.00 / 500 g</div>
+                        <div class="min-order">Min: 12 × 500 g = $168</div>
+                        <button class="order-btn" onclick="openOrder('Citric Acid', 'Monohydrate ≥99.5%, 500 g', 14, 500, 12)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Lactic Acid</div>
+                        <div class="product-spec">85%, USP, 500 mL</div>
+                        <div class="price">$26.00 / 500 mL</div>
+                        <div class="min-order">Min: 7 × 500 mL = $182</div>
+                        <button class="order-btn" onclick="openOrder('Lactic Acid', '85% USP, 500 mL', 26, 500, 7)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Oxalic Acid</div>
+                        <div class="product-spec">Dihydrate, ≥99.0%, 500 g</div>
+                        <div class="price">$16.00 / 500 g</div>
+                        <div class="min-order">Min: 11 × 500 g = $176</div>
+                        <button class="order-btn" onclick="openOrder('Oxalic Acid', 'Dihydrate ≥99.0%, 500 g', 16, 500, 11)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Tartaric Acid</div>
+                        <div class="product-spec">L(+), ≥99.7%, 500 g</div>
+                        <div class="price">$19.00 / 500 g</div>
+                        <div class="min-order">Min: 9 × 500 g = $171</div>
+                        <button class="order-btn" onclick="openOrder('Tartaric Acid', 'L(+) ≥99.7%, 500 g', 19, 500, 9)">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Bases -->
+            <h3 style="margin: 2rem 0 1rem; color: var(--accent);">Bases</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Sodium Hydroxide</div>
+                        <div class="product-spec">Pellets, ≥97%, ACS, 500 g</div>
+                        <div class="price">$21.00 / 500 g</div>
+                        <div class="min-order">Min: 8 × 500 g = $168</div>
+                        <button class="order-btn" onclick="openOrder('NaOH', 'Pellets ≥97% ACS, 500 g', 21, 500, 8)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Potassium Hydroxide</div>
+                        <div class="product-spec">Pellets, ≥85%, ACS, 500 g</div>
+                        <div class="price">$24.00 / 500 g</div>
+                        <div class="min-order">Min: 7 × 500 g = $168</div>
+                        <button class="order-btn" onclick="openOrder('KOH', 'Pellets ≥85% ACS, 500 g', 24, 500, 7)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Ammonia Solution</div>
+                        <div class="product-spec">28-30%, ACS, 500 mL</div>
+                        <div class="price">$17.00 / 500 mL</div>
+                        <div class="min-order">Min: 10 × 500 mL = $170</div>
+                        <button class="order-btn" onclick="openOrder('Ammonia', '28-30% ACS, 500 mL', 17, 500, 10)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Triethylamine</div>
+                        <div class="product-spec">≥99.0%, 500 mL</div>
+                        <div class="price">$32.00 / 500 mL</div>
+                        <div class="min-order">Min: 6 × 500 mL = $192</div>
+                        <button class="order-btn" onclick="openOrder('Triethylamine', '≥99.0%, 500 mL', 32, 500, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Sodium Bicarbonate</div>
+                        <div class="product-spec">≥99.0%, ACS, 500 g</div>
+                        <div class="price">$13.00 / 500 g</div>
+                        <div class="min-order">Min: 13 × 500 g = $169</div>
+                        <button class="order-btn" onclick="openOrder('NaHCO3', '≥99.0% ACS, 500 g', 13, 500, 13)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Potassium Carbonate</div>
+                        <div class="product-spec">≥99.0%, 500 g</div>
+                        <div class="price">$15.00 / 500 g</div>
+                        <div class="min-order">Min: 11 × 500 g = $165</div>
+                        <button class="order-btn" onclick="openOrder('K2CO3', '≥99.0%, 500 g', 15, 500, 11)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Diisopropylethylamine (DIPEA)</div>
+                        <div class="product-spec">≥99.5%, 100 mL</div>
+                        <div class="price">$28.00 / 100 mL</div>
+                        <div class="min-order">Min: 6 × 100 mL = $168</div>
+                        <button class="order-btn" onclick="openOrder('DIPEA', '≥99.5%, 100 mL', 28, 100, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Sodium Methoxide</div>
+                        <div class="product-spec">25% in methanol, 100 mL</div>
+                        <div class="price">$35.00 / 100 mL</div>
+                        <div class="min-order">Min: 5 × 100 mL = $175</div>
+                        <button class="order-btn" onclick="openOrder('NaOMe', '25% in MeOH, 100 mL', 35, 100, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Calcium Hydroxide</div>
+                        <div class="product-spec">≥95%, 500 g</div>
+                        <div class="price">$11.00 / 500 g</div>
+                        <div class="min-order">Min: 15 × 500 g = $165</div>
+                        <button class="order-btn" onclick="openOrder('Ca(OH)2', '≥95%, 500 g', 11, 500, 15)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Magnesium Oxide</div>
+                        <div class="product-spec">Heavy, ≥99.0%, 500 g</div>
+                        <div class="price">$20.00 / 500 g</div>
+                        <div class="min-order">Min: 9 × 500 g = $180</div>
+                        <button class="order-btn" onclick="openOrder('MgO', 'Heavy ≥99.0%, 500 g', 20, 500, 9)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Barium Hydroxide</div>
+                        <div class="product-spec">Octahydrate, ≥98%, 500 g</div>
+                        <div class="price">$29.00 / 500 g</div>
+                        <div class="min-order">Min: 6 × 500 g = $174</div>
+                        <button class="order-btn" onclick="openOrder('Ba(OH)2', 'Octahydrate ≥98%, 500 g', 29, 500, 6)">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Salts -->
+            <h3 style="margin: 2rem 0 1rem; color: var(--accent);">Salts</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Sodium Chloride</div>
+                        <div class="product-spec">≥99.0%, ACS, 500 g</div>
+                        <div class="price">$10.00 / 500 g</div>
+                        <div class="min-order">Min: 17 × 500 g = $170</div>
+                        <button class="order-btn" onclick="openOrder('NaCl', '≥99.0% ACS, 500 g', 10, 500, 17)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Potassium Chloride</div>
+                        <div class="product-spec">≥99.0%, ACS, 500 g</div>
+                        <div class="price">$12.00 / 500 g</div>
+                        <div class="min-order">Min: 14 × 500 g = $168</div>
+                        <button class="order-btn" onclick="openOrder('KCl', '≥99.0% ACS, 500 g', 12, 500, 14)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Sodium Sulfate</div>
+                        <div class="product-spec">Anhydrous, ≥99.0%, 500 g</div>
+                        <div class="price">$9.00 / 500 g</div>
+                        <div class="min-order">Min: 19 × 500 g = $171</div>
+                        <button class="order-btn" onclick="openOrder('Na2SO4', 'Anhydrous ≥99.0%, 500 g', 9, 500, 19)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Magnesium Sulfate</div>
+                        <div class="product-spec">Heptahydrate, ≥99.5%, 500 g</div>
+                        <div class="price">$11.00 / 500 g</div>
+                        <div class="min-order">Min: 15 × 500 g = $165</div>
+                        <button class="order-btn" onclick="openOrder('MgSO4', 'Heptahydrate ≥99.5%, 500 g', 11, 500, 15)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Calcium Chloride</div>
+                        <div class="product-spec">Dihydrate, ≥99.0%, 500 g</div>
+                        <div class="price">$14.00 / 500 g</div>
+                        <div class="min-order">Min: 12 × 500 g = $168</div>
+                        <button class="order-btn" onclick="openOrder('CaCl2', 'Dihydrate ≥99.0%, 500 g', 14, 500, 12)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Ammonium Chloride</div>
+                        <div class="product-spec">≥99.5%, ACS, 500 g</div>
+                        <div class="price">$13.00 / 500 g</div>
+                        <div class="min-order">Min: 13 × 500 g = $169</div>
+                        <button class="order-btn" onclick="openOrder('NH4Cl', '≥99.5% ACS, 500 g', 13, 500, 13)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Sodium Acetate</div>
+                        <div class="product-spec">Trihydrate, ≥99.0%, 500 g</div>
+                        <div class="price">$15.00 / 500 g</div>
+                        <div class="min-order">Min: 11 × 500 g = $165</div>
+                        <button class="order-btn" onclick="openOrder('NaOAc', 'Trihydrate ≥99.0%, 500 g', 15, 500, 11)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Potassium Phosphate (monobasic)</div>
+                        <div class="product-spec">≥99.0%, 500 g</div>
+                        <div class="price">$18.00 / 500 g</div>
+                        <div class="min-order">Min: 10 × 500 g = $180</div>
+                        <button class="order-btn" onclick="openOrder('KH2PO4', '≥99.0%, 500 g', 18, 500, 10)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Sodium Phosphate (dibasic)</div>
+                        <div class="product-spec">Heptahydrate, ≥99.0%, 500 g</div>
+                        <div class="price">$16.00 / 500 g</div>
+                        <div class="min-order">Min: 11 × 500 g = $176</div>
+                        <button class="order-btn" onclick="openOrder('Na2HPO4', 'Heptahydrate ≥99.0%, 500 g', 16, 500, 11)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Zinc Chloride</div>
+                        <div class="product-spec">≥97%, 500 g</div>
+                        <div class="price">$22.00 / 500 g</div>
+                        <div class="min-order">Min: 8 × 500 g = $176</div>
+                        <button class="order-btn" onclick="openOrder('ZnCl2', '≥97%, 500 g', 22, 500, 8)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Copper Sulfate</div>
+                        <div class="product-spec">Pentahydrate, ≥99.0%, 500 g</div>
+                        <div class="price">$19.00 / 500 g</div>
+                        <div class="min-order">Min: 9 × 500 g = $171</div>
+                        <button class="order-btn" onclick="openOrder('CuSO4', 'Pentahydrate ≥99.0%, 500 g', 19, 500, 9)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Ferric Chloride</div>
+                        <div class="product-spec">Hexahydrate, ≥98%, 500 g</div>
+                        <div class="price">$20.00 / 500 g</div>
+                        <div class="min-order">Min: 9 × 500 g = $180</div>
+                        <button class="order-btn" onclick="openOrder('FeCl3', 'Hexahydrate ≥98%, 500 g', 20, 500, 9)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Sodium Citrate</div>
+                        <div class="product-spec">Tribasic dihydrate, ≥99.0%, 500 g</div>
+                        <div class="price">$17.00 / 500 g</div>
+                        <div class="min-order">Min: 10 × 500 g = $170</div>
+                        <button class="order-btn" onclick="openOrder('Na3C6H5O7', 'Tribasic dihydrate ≥99.0%, 500 g', 17, 500, 10)">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Catalysts -->
+            <h3 style="margin: 2rem 0 1rem; color: var(--accent);">Catalysts</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Palladium on Carbon</div>
+                        <div class="product-spec">10 wt. % Pd, wet, Degussa type, 5 g</div>
+                        <div class="price">$75.00 / 5 g</div>
+                        <div class="min-order">Min: 3 × 5 g = $225</div>
+                        <button class="order-btn" onclick="openOrder('Pd/C', '10% wet Degussa, 5 g', 75, 5, 3)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Platinum Dioxide</div>
+                        <div class="product-spec">Adams' catalyst, ≥99.0%, 1 g</div>
+                        <div class="price">$120.00 / 1 g</div>
+                        <div class="min-order">Min: 2 × 1 g = $240</div>
+                        <button class="order-btn" onclick="openOrder('PtO2', "Adams' ≥99.0%, 1 g", 120, 1, 2)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Raney Nickel</div>
+                        <div class="product-spec">50 wt. % in water, 50 g</div>
+                        <div class="price">$65.00 / 50 g</div>
+                        <div class="min-order">Min: 3 × 50 g = $195</div>
+                        <button class="order-btn" onclick="openOrder('Raney Ni', '50% in water, 50 g', 65, 50, 3)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Grubbs Catalyst 2nd Generation</div>
+                        <div class="product-spec">Olefin metathesis, 500 mg</div>
+                        <div class="price">$250.00 / 500 mg</div>
+                        <div class="min-order">Min: 1 × 500 mg = $250</div>
+                        <button class="order-btn" onclick="openOrder('Grubbs 2G', 'Olefin metathesis, 500 mg', 250, 0.5, 1)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Pd(dppf)Cl2</div>
+                        <div class="product-spec">Dichlorobis(benzonitrile)palladium(II), 1 g</div>
+                        <div class="price">$110.00 / 1 g</div>
+                        <div class="min-order">Min: 2 × 1 g = $220</div>
+                        <button class="order-btn" onclick="openOrder('Pd(dppf)Cl2', 'Dichloro, 1 g', 110, 1, 2)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Ruthenium Trichloride</div>
+                        <div class="product-spec">Anhydrous, 99.9% trace metals, 1 g</div>
+                        <div class="price">$95.00 / 1 g</div>
+                        <div class="min-order">Min: 2 × 1 g = $190</div>
+                        <button class="order-btn" onclick="openOrder('RuCl3', 'Anhydrous 99.9%, 1 g', 95, 1, 2)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Nickel(II) Acetylacetonate</div>
+                        <div class="product-spec">≥95.0%, 5 g</div>
+                        <div class="price">$40.00 / 5 g</div>
+                        <div class="min-order">Min: 5 × 5 g = $200</div>
+                        <button class="order-btn" onclick="openOrder('Ni(acac)2', '≥95.0%, 5 g', 40, 5, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Tetrakis(triphenylphosphine)palladium(0)</div>
+                        <div class="product-spec">Pd(PPh3)4, 1 g</div>
+                        <div class="price">$85.00 / 1 g</div>
+                        <div class="min-order">Min: 2 × 1 g = $170</div>
+                        <button class="order-btn" onclick="openOrder('Pd(PPh3)4', '1 g', 85, 1, 2)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Copper(I) Iodide</div>
+                        <div class="product-spec">≥98.0%, AnalaR, 25 g</div>
+                        <div class="price">$55.00 / 25 g</div>
+                        <div class="min-order">Min: 3 × 25 g = $165</div>
+                        <button class="order-btn" onclick="openOrder('CuI', '≥98.0% AnalaR, 25 g', 55, 25, 3)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Triphenylphosphine</div>
+                        <div class="product-spec">≥99.0%, 25 g</div>
+                        <div class="price">$28.00 / 25 g</div>
+                        <div class="min-order">Min: 6 × 25 g = $168</div>
+                        <button class="order-btn" onclick="openOrder('PPh3', '≥99.0%, 25 g', 28, 25, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">DBU</div>
+                        <div class="product-spec">1,8-Diazabicyclo[5.4.0]undec-7-ene, ≥98.0%, 100 mL</div>
+                        <div class="price">$45.00 / 100 mL</div>
+                        <div class="min-order">Min: 4 × 100 mL = $180</div>
+                        <button class="order-btn" onclick="openOrder('DBU', '≥98.0%, 100 mL', 45, 100, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-cogs"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">[RuCl2(p-cymene)]2</div>
+                        <div class="product-spec">Dichloro(p-cymene)ruthenium(II) dimer, 500 mg</div>
+                        <div class="price">$150.00 / 500 mg</div>
+                        <div class="min-order">Min: 2 × 500 mg = $300</div>
+                        <button class="order-btn" onclick="openOrder('[RuCl2(p-cymene)]2', 'Dimer, 500 mg', 150, 0.5, 2)">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Reagents -->
+            <h3 style="margin: 2rem 0 1rem; color: var(--accent);">Reagents</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-vial"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Sodium Borohydride</div>
+                        <div class="product-spec">≥98%, 100 g</div>
+                        <div class="price">$35.00 / 100 g</div>
+                        <div class="min-order">Min: 5 × 100 g = $175</div>
+                        <button class="order-btn" onclick="openOrder('NaBH4', '≥98%, 100 g', 35, 100, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-vial"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Lithium Aluminum Hydride</div>
+                        <div class="product-spec">LiAlH4, 95%, 100 g</div>
+                        <div class="price">$60.00 / 100 g</div>
+                        <div class="min-order">Min: 3 × 100 g = $180</div>
+                        <button class="order-btn" onclick="openOrder('LiAlH4', '95%, 100 g', 60, 100, 3)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Triethylamine</div>
+                        <div class="product-spec">≥99.0%, 500 mL</div>
+                        <div class="price">$32.00 / 500 mL</div>
+                        <div class="min-order">Min: 6 × 500 mL = $192</div>
+                        <button class="order-btn" onclick="openOrder('Et3N', '≥99.0%, 500 mL', 32, 500, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">DCC</div>
+                        <div class="product-spec">Dicyclohexylcarbodiimide, ≥99.0%, 100 g</div>
+                        <div class="price">$48.00 / 100 g</div>
+                        <div class="min-order">Min: 4 × 100 g = $192</div>
+                        <button class="order-btn" onclick="openOrder('DCC', '≥99.0%, 100 g', 48, 100, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">HATU</div>
+                        <div class="product-spec">O-(7-Azabenzotriazol-1-yl)-N,N,N′,N′-tetramethyluronium hexafluorophosphate, 5 g</div>
+                        <div class="price">$90.00 / 5 g</div>
+                        <div class="min-order">Min: 2 × 5 g = $180</div>
+                        <button class="order-btn" onclick="openOrder('HATU', '5 g', 90, 5, 2)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Dess-Martin Periodinane</div>
+                        <div class="product-spec">≥98.0%, 5 g</div>
+                        <div class="price">$105.00 / 5 g</div>
+                        <div class="min-order">Min: 2 × 5 g = $210</div>
+                        <button class="order-btn" onclick="openOrder('DMP', '≥98.0%, 5 g', 105, 5, 2)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">PCC</div>
+                        <div class="product-spec">Pyridinium Chlorochromate, 98%, 25 g</div>
+                        <div class="price">$55.00 / 25 g</div>
+                        <div class="min-order">Min: 3 × 25 g = $165</div>
+                        <button class="order-btn" onclick="openOrder('PCC', '98%, 25 g', 55, 25, 3)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Jones Reagent</div>
+                        <div class="product-spec">Chromic acid solution, 500 mL</div>
+                        <div class="price">$40.00 / 500 mL</div>
+                        <div class="min-order">Min: 5 × 500 mL = $200</div>
+                        <button class="order-btn" onclick="openOrder('Jones Reagent', 'Chromic acid, 500 mL', 40, 500, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Thionyl Chloride</div>
+                        <div class="product-spec">≥99.0%, 100 mL</div>
+                        <div class="price">$25.00 / 100 mL</div>
+                        <div class="min-order">Min: 7 × 100 mL = $175</div>
+                        <button class="order-btn" onclick="openOrder('SOCl2', '≥99.0%, 100 mL', 25, 100, 7)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Oxalyl Chloride</div>
+                        <div class="product-spec">≥99.0%, 100 mL</div>
+                        <div class="price">$38.00 / 100 mL</div>
+                        <div class="min-order">Min: 5 × 100 mL = $190</div>
+                        <button class="order-btn" onclick="openOrder('Oxalyl Cl', '≥99.0%, 100 mL', 38, 100, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Diethyl Azodicarboxylate (DEAD)</div>
+                        <div class="product-spec">≥98.0%, 100 mL</div>
+                        <div class="price">$52.00 / 100 mL</div>
+                        <div class="min-order">Min: 4 × 100 mL = $208</div>
+                        <button class="order-btn" onclick="openOrder('DEAD', '≥98.0%, 100 mL', 52, 100, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-pills"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Lawesson's Reagent</div>
+                        <div class="product-spec">≥97.0%, 25 g</div>
+                        <div class="price">$65.00 / 25 g</div>
+                        <div class="min-order">Min: 3 × 25 g = $195</div>
+                        <button class="order-btn" onclick="openOrder('Lawesson', '≥97.0%, 25 g', 65, 25, 3)">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Reference Standards -->
+            <h3 style="margin: 2rem 0 1rem; color: var(--accent);">Reference Standards</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-certificate"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Acetaminophen</div>
+                        <div class="product-spec">Pharmaceutical Secondary Standard, CRM, 1 g</div>
+                        <div class="price">$50.00 / 1 g</div>
+                        <div class="min-order">Min: 4 × 1 g = $200</div>
+                        <button class="order-btn" onclick="openOrder('Acetaminophen', 'CRM 1 g', 50, 1, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-certificate"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Caffeine</div>
+                        <div class="product-spec">USP Reference Standard, 100 mg</div>
+                        <div class="price">$35.00 / 100 mg</div>
+                        <div class="min-order">Min: 5 × 100 mg = $175</div>
+                        <button class="order-btn" onclick="openOrder('Caffeine', 'USP 100 mg', 35, 0.1, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-certificate"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Ibuprofen</div>
+                        <div class="product-spec">EP/USP CRM, 100 mg</div>
+                        <div class="price">$45.00 / 100 mg</div>
+                        <div class="min-order">Min: 4 × 100 mg = $180</div>
+                        <button class="order-btn" onclick="openOrder('Ibuprofen', 'EP/USP CRM 100 mg', 45, 0.1, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-certificate"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Salicylic Acid</div>
+                        <div class="product-spec">Pharmaceutical Secondary Standard, 1 g</div>
+                        <div class="price">$28.00 / 1 g</div>
+                        <div class="min-order">Min: 6 × 1 g = $168</div>
+                        <button class="order-btn" onclick="openOrder('Salicylic Acid', 'Secondary Std 1 g', 28, 1, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-certificate"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">pH 4.00 Buffer</div>
+                        <div class="product-spec">Certipur® CRM, 500 mL</div>
+                        <div class="price">$25.00 / 500 mL</div>
+                        <div class="min-order">Min: 7 × 500 mL = $175</div>
+                        <button class="order-btn" onclick="openOrder('pH 4 Buffer', 'Certipur CRM 500 mL', 25, 500, 7)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-certificate"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">pH 7.00 Buffer</div>
+                        <div class="product-spec">Certipur® CRM, 500 mL</div>
+                        <div class="price">$25.00 / 500 mL</div>
+                        <div class="min-order">Min: 7 × 500 mL = $175</div>
+                        <button class="order-btn" onclick="openOrder('pH 7 Buffer', 'Certipur CRM 500 mL', 25, 500, 7)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Karl Fischer Water Standard</div>
+                        <div class="product-spec">Hydranal, 1 mg/mL, 100 mL</div>
+                        <div class="price">$40.00 / 100 mL</div>
+                        <div class="min-order">Min: 5 × 100 mL = $200</div>
+                        <button class="order-btn" onclick="openOrder('KF Standard', 'Hydranal 1 mg/mL, 100 mL', 40, 100, 5)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">ICP Multi-Element Standard (IV, 23 elements)</div>
+                        <div class="product-spec">100 mL</div>
+                        <div class="price">$150.00 / 100 mL</div>
+                        <div class="min-order">Min: 2 × 100 mL = $300</div>
+                        <button class="order-btn" onclick="openOrder('ICP Std IV', '23 elements, 100 mL', 150, 100, 2)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-leaf"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">THC (Cannabis Standard)</div>
+                        <div class="product-spec">CRM, 1 mg/mL, 1 mL</div>
+                        <div class="price">$120.00 / 1 mL</div>
+                        <div class="min-order">Min: 2 × 1 mL = $240</div>
+                        <button class="order-btn" onclick="openOrder('THC Std', 'CRM 1 mg/mL, 1 mL', 120, 1, 2)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-certificate"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Benzene-d6</div>
+                        <div class="product-spec">GC/MS Standard, 2000 μg/mL, 1 mL</div>
+                        <div class="price">$55.00 / 1 mL</div>
+                        <div class="min-order">Min: 3 × 1 mL = $165</div>
+                        <button class="order-btn" onclick="openOrder('Benzene-d6', 'GC/MS 2000 μg/mL, 1 mL', 55, 1, 3)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-certificate"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Glucose</div>
+                        <div class="product-spec">Carbohydrate Standard, CRM, 1 g</div>
+                        <div class="price">$30.00 / 1 g</div>
+                        <div class="min-order">Min: 6 × 1 g = $180</div>
+                        <button class="order-btn" onclick="openOrder('Glucose Std', 'CRM 1 g', 30, 1, 6)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-flask"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Lead (ICP Standard)</div>
+                        <div class="product-spec">1000 ppm, 100 mL</div>
+                        <div class="price">$42.00 / 100 mL</div>
+                        <div class="min-order">Min: 4 × 100 mL = $168</div>
+                        <button class="order-btn" onclick="openOrder('Pb ICP', '1000 ppm, 100 mL', 42, 100, 4)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-certificate"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Penicillin G Sodium</div>
+                        <div class="product-spec">Pharmaceutical Secondary Standard, CRM, 100 mg</div>
+                        <div class="price">$60.00 / 100 mg</div>
+                        <div class="min-order">Min: 3 × 100 mg = $180</div>
+                        <button class="order-btn" onclick="openOrder('Pen G Na', 'CRM 100 mg', 60, 0.1, 3)">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-img"><i class="fas fa-certificate"></i></div>
+                    <div class="product-body">
+                        <div class="product-title">Vitamin C (Ascorbic Acid)</div>
+                        <div class="product-spec">USP Standard, 100 mg</div>
+                        <div class="price">$38.00 / 100 mg</div>
+                        <div class="min-order">Min: 5 × 100 mg = $190</div>
+                        <button class="order-btn" onclick="openOrder('Vit C', 'USP 100 mg', 38, 0.1, 5)">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeOrder()">&times;</span>
+            <h2>Place Order</h2>
+            <div id="orderSummary"></div>
+            <div class="escrow-info">
+                <strong>Escrow Protection:</strong> Your BTC is held in multisig escrow until delivery is confirmed. 
+                Release funds only after receiving and verifying the product. Terms: No refunds post-release; disputes via provider. 
+                <br><br><strong>Direct Pay Option:</strong> Pay vendor wallet directly (no escrow, higher risk).
+                <br><strong>Escrow Provider:</strong> <a href="https://www.swiftescrow.totalh.net" target="_blank">swiftescrow.totalh.net</a>
+            </div>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Shipping Name (Alias OK)</label>
+                    <input type="text" required placeholder="e.g. John Doe Research">
+                </div>
+                <div class="form-group">
+                    <label>Shipping Address</label>
+                    <textarea required rows="3" placeholder="Full address (PO Box OK)"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Email (for escrow updates)</label>
+                    <input type="email" required placeholder="protonmail or similar">
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select id="paymentMethod" onchange="togglePayment()">
+                        <option value="escrow">Escrow (Recommended for Safety)</option>
+                        <option value="direct">Direct BTC Payment</option>
+                    </select>
+                </div>
+                <div id="escrowSection">
+                    <p><strong>Your Escrow ID:</strong> <span id="escrowId">ESC-2025-XXXXXX</span> (Generated for this order)</p>
+                    <p>Send BTC to escrow. Follow up via email. Refunds: Full if undelivered; partial for damage.</p>
+                </div>
+                <div id="directSection" style="display:none;">
+                    <p><strong>Direct Payment Details:</strong></p>
+                    <div id="btcAddress" class="btc-address"></div> <!-- This is where the full address + amount goes -->
+                </div>
+                <div class="form-group">
+                    <label>Transaction ID (64 hex chars)</label>
+                    <input type="text" id="txid" placeholder="e.g. a1b2c3d4e5f67890..." maxlength="64">
+                    <small style="color: var(--warning);">Enter only after payment confirmed on-chain. Invalid = deny submit.</small>
+                </div>
+                <button type="submit" class="submit-btn">Submit Secure Order</button>
+            </form>
+        </div>
+    </div>
+    <!-- Vendors -->
+    <section class="section" id="vendors">
+        <div class="container">
+            <h2 class="section-title">Trusted Vendors</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--muted);">Anonymous vendors specializing in pharma & chemical research supplies.</p>
+            <div class="vendors-grid">
+                <!-- Canada 3 -->
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-leaf"></i></div><div>MapleSynth CA</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-mountain"></i></div><div>NordPure CA</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-snowflake"></i></div><div>ArcticReagents CA</div></div>
+                <!-- USA 8 -->
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-star"></i></div><div>LibertyLabs US</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-eagle"></i></div><div>EagleChem US</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-rocket"></i></div><div>FrontierPure US</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-palm-tree"></i></div><div>CoastSynth US</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-tractor"></i></div><div>MidwestLabs US</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-cactus"></i></div><div>TexReagents US</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-mountain-sun"></i></div><div>RockyPure US</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-star-and-crescent"></i></div><div>StarSynth US</div></div>
+                <!-- EU 5 -->
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-mountain"></i></div><div>AlpineChem EU</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-ship"></i></div><div>SeaPure EU</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-olive"></i></div><div>IberianLabs EU</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-fish"></i></div><div>BalticSynth EU</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-bridge-water"></i></div><div>RhineReagents EU</div></div>
+                 <!--  Australian 2 -->
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-kangaroo"></i></div><div>OutbackPure AU</div></div>
+                <div class="vendor-card"><div class="vendor-avatar"><i class="fas fa-koala"></i></div><div>CoralChem AU</div></div>
+            </div>
+        </div>
+    </section>
+    <!-- Reviews -->
+    <section class="section" id="reviews">
+        <div class="container">
+            <h2 class="section-title">Customer Reviews</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: var(--muted);">Verified anonymous reviews from researchers. Trust through transparency.</p>
+            <div class="reviews">
+                <div class="review">
+                    <div class="review-header"><div class="review-name">SynthGhost23</div><div class="stars">★★★★☆ 4.2</div></div>
+                    <div class="review-text">"Acetonitrile HPLC grade pure as advertised, no impurities in my LC-MS runs. Shipped from US vendor in 3 days, escrow smooth."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">LabPhantom</div><div class="stars">★★★★☆ 4.3</div></div>
+                    <div class="review-text">"Palladium on Carbon worked flawlessly for hydrogenation. Catalyst activity exceeded Sigma spec. Escrow released after confirmation."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ChemShade47</div><div class="stars">★★★★☆ 4.0</div></div>
+                    <div class="review-text">"Diethyl Ether anhydrous, no peroxide formation after 3 weeks. Fast Canada → US shipping."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ReagentWraith</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"THF inhibitor-free critical for my Grignard. Arrived vacuum-sealed. Vendor US3 reliable."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">MolSpecter</div><div class="stars">★★★★☆ 3.9</div></div>
+                    <div class="review-text">"Sulfuric acid batch consistent. Minor delay in escrow release but resolved in 24h."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ElixerAnon</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"Grubbs Catalyst 2G gave quantitative metathesis yields. Pricey but worth it. Escrow held 48h post-confirm."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">SynthVeil</div><div class="stars">★★★★☆ 4.3</div></div>
+                    <div class="review-text">"Hydrochloric acid 37% clean, no heavy metals. Great for extractions. Canada vendor stealth pack A+."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">LabEcho</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"HATU coupling reagent activated fast, no side products in peptide synth. EU delivery 6 days."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ChemMist</div><div class="stars">★★★★☆ 4.1</div></div>
+                    <div class="review-text">"Methanol HPLC, evaporated clean. Min order was high but quality justifies. Direct pay used, no issues."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ReagentFog</div><div class="stars">★★★★☆ 4.4</div></div>
+                    <div class="review-text">"Sodium Borohydride reduced ketones selectively. Stable storage, US vendor responsive via email."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">MolWhisper</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"TFA for deprotection clean, no racemization. Escrow ID tracked easily, refund policy clear."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">SynthSilhouette</div><div class="stars">★★★★☆ 3.9</div></div>
+                    <div class="review-text">"Chloroform stabilized, good for extractions. Slight odor leak in pack, but product fine from CA."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">LabShadow</div><div class="stars">★★★★☆ 4.3</div></div>
+                    <div class="review-text">"Pd(PPh3)4 catalyzed Heck reaction efficiently. Purity high, 3-day US ship."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ChemHaze</div><div class="stars">★★★★☆ 4.2</div></div>
+                    <div class="review-text">"Ethyl Acetate HPLC, distilled over nicely. Min qty ok for bulk, escrow safe."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ElixerShade</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"Lawesson's Reagent thionated amides perfectly. AU vendor discreet, 5 days."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ReagentGlimmer</div><div class="stars">★★★★☆ 4.0</div></div>
+                    <div class="review-text">"Nitric acid trace metal low, ideal for ICP. EU pack secure, TXID validated quick."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">MolDrift</div><div class="stars">★★★★☆ 4.3</div></div>
+                    <div class="review-text">"DBU base strong for eliminations, no impurities. Direct pay fast, but escrow next time."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">SynthBlur</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"Hexane HPLC dry, great for chromatography. US vendor 2 days, stars for speed."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">LabGloom</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"Dess-Martin Periodinane oxidized alcohols smoothly. Expensive but effective, escrow protected."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ChemDusk</div><div class="stars">★★★★☆ 4.1</div></div>
+                    <div class="review-text">"Acetic acid glacial pure, used in esterification. CA ship 4 days, no leaks."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ReagentTwilight</div><div class="stars">★★★★☆ 4.4</div></div>
+                    <div class="review-text">"Raney Nickel desulfurized clean. Wet form handled well, EU delivery."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">MolEclipse</div><div class="stars">★★★★☆ 3.9</div></div>
+                    <div class="review-text">"DMF ACS, dried easily with mol sieves. Min order bulk good for lab."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">SynthNebula</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"THC standard CRM accurate for calibration. Discreet, US escrow flawless."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">LabVoid</div><div class="stars">★★★★☆ 4.3</div></div>
+                    <div class="review-text">"Oxalyl chloride for Swern oxidation, reacted fast. Pack stable, 6 days AU."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ChemOrbit</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"Sodium Hydroxide pellets dissolved clear. Basic workhorse, CA vendor top."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ElixerCosmos</div><div class="stars">★★★★☆ 4.0</div></div>
+                    <div class="review-text">"Toluene ACS, distilled fraction clean. Escrow terms fair, no disputes."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ReagentStar</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"LiAlH4 reduced esters to alcohols perfectly. Anhydrous, EU ship quick."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">MolGalaxy</div><div class="stars">★★★★☆ 4.2</div></div>
+                    <div class="review-text">"Perchloric acid for digestions, low blank. Safety pack good, US 3 days."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">SynthCluster</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"CuI for Ullmann coupling, active catalyst. Min qty low, great value."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">LabNova</div><div class="stars">★★★★☆ 4.4</div></div>
+                    <div class="review-text">"pH 7 Buffer CRM stable over months. Calibration spot-on, escrow easy."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ChemAurora</div><div class="stars">★★★★☆ 4.1</div></div>
+                    <div class="review-text">"DEAD for Mitsunobu, high yield inversion. Fresh batch, CA delivery."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ReagentDawn</div><div class="stars">★★★★☆ 3.9</div></div>
+                    <div class="review-text">"Boric acid for Suzuki, trace free. Bulk min ok, direct pay worked."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">MolSunrise</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"Ibuprofen CRM pure, HPLC ref standard. US vendor 2 days, A+."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">SynthHorizon</div><div class="stars">★★★★☆ 4.3</div></div>
+                    <div class="review-text">"Cyclohexane HPLC non-polar solvent ideal. No aromatics, EU pack."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">LabZenith</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"Jones Reagent oxidized secondary alcohols clean. Pre-made, convenient."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ChemPeak</div><div class="stars">★★★★☆ 4.0</div></div>
+                    <div class="review-text">"Potassium Carbonate anhydrous drying agent effective. Min order bulk."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ElixerSummit</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"Platinum Dioxide hydrogenated alkenes fast. Adams catalyst reliable."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ReagentCrest</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"Formic acid for formylation, high purity. Escrow refund tested once, worked."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">MolApex</div><div class="stars">★★★★☆ 4.2</div></div>
+                    <div class="review-text">"Triphenylphosphine ligand stable, phosphine oxide byproduct clean."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">SynthVertex</div><div class="stars">★★★★☆ 4.4</div></div>
+                    <div class="review-text">"Ammonia solution for ammonolysis, concentrated right. US ship stealth."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">LabPinnacle</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"Glucose CRM for carb analysis, accurate mass. Quick escrow release."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ChemZen</div><div class="stars">★★★★☆ 3.9</div></div>
+                    <div class="review-text">"Zinc Chloride Lewis acid for Friedel-Crafts, active. Min qty reasonable."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ReagentNexus</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"Penicillin G standard for antibiotic assays, CRM certified."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">MolCore</div><div class="stars">★★★★☆ 4.1</div></div>
+                    <div class="review-text">"Isopropanol HPLC for cleaning, residue-free. EU vendor good."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">SynthHub</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"Ruthenium Trichloride for olefin polymerization, trace metals low."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">LabFusion</div><div class="stars">★★★★☆ 4.3</div></div>
+                    <div class="review-text">"Citric acid monohydrate buffer prep easy. Bulk from US, no hassle."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ChemLink</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"Karl Fischer standard titrated water accurately. Hydranal reliable."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ElixerBond</div><div class="stars">★★★★☆ 4.0</div></div>
+                    <div class="review-text">"Thionyl chloride chlorination smooth, SO2 vented safe. CA pack."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ReagentChain</div><div class="stars">★★★★☆ 4.6</div></div>
+                    <div class="review-text">"Caffeine USP ref for stim assays, pure peak. Escrow secure."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">MolMesh</div><div class="stars">★★★★☆ 4.2</div></div>
+                    <div class="review-text">"Magnesium Sulfate drying, heptahydrate form easy. Min order fine."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">SynthNet</div><div class="stars">★★★★☆ 4.4</div></div>
+                    <div class="review-text">"Benzene-d6 GC/MS internal std, deuterated clean. Quick."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">LabGrid</div><div class="stars">★★★★☆ 3.9</div></div>
+                    <div class="review-text">"Lactic acid USP for buffers, 85% conc good. Slight delay, but ok."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ChemWeb</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"Nickel Acetylacetonate for coordination chem, soluble well."</div>
+                </div>
+                <div class="review">
+                    <div class="review-header"><div class="review-name">ReagentLattice</div><div class="stars">★★★★☆ 4.5</div></div>
+                    <div class="review-text">"Salicylic Acid std for salicylate tests, secondary pure."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact -->
+    <section class="section" id="contact">
+        <div class="container" style="text-align:center;">
+            <h2 class="section-title">Contact Us</h2>
+            <p><strong>Email:</strong> <a href="mailto:thepharma@morke.ru">thepharma@morke.ru</a></p>
+            <p><strong>Response Time:</strong> 6–12 hours (Mon–Sat). Use PGP for sensitive details.</p>
+            <p style="color: var(--muted);"><em>For custom orders or COAs, include product refs.</em></p>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 The Pharma Research Supply. For research use only. Not for human consumption.</p>
+            <p>hshhshsh.onion / Our Darkweb link</p>
+        </div>
+    </footer>
+    <script>
+        // === EDIT THIS LINE ONLY ===
+        const MY_BTC_ADDRESS = 'bc1qvxzvx0hdcahwys5v4yuqh5er9myuy4hcj3yudl'; // ← CHANGE THIS TO YOUR BTC WALLET
+        // ===========================
+
+        let currentProduct = {};
+        const modal = document.getElementById('orderModal');
+        const escrowId = 'ESC-' + Date.now().toString(36).toUpperCase().substring(0, 8); // Realistic ID gen
+        function openOrder(name, spec, price, vol, minQty) {
+            currentProduct = { name, spec, price, vol, minQty };
+            const total = (price * minQty).toFixed(2);
+            const unit = vol >= 1000 ? ' L' : vol >= 500 ? ' × 500 mL' : ' × 100 mL'; // Dynamic unit display
+            document.getElementById('orderSummary').innerHTML = `
+                <h3>${name}</h3>
+                <p>${spec}</p>
+                <p><strong>Minimum Order (Escrow Safe):</strong> ${minQty}${unit} = <strong style="color:var(--success)">$${total}</strong></p>
+                <p style="color: var(--warning);">Escrow fuses payment for safety—funds released post-delivery confirm.</p>
+            `;
+            document.getElementById('escrowId').textContent = escrowId;
+            document.getElementById('txid').value = '';
+            togglePayment();
+            modal.style.display = 'block';
+        }
+        function closeOrder() {
+            modal.style.display = 'none';
+        }
+        function togglePayment() {
+            const method = document.getElementById('paymentMethod').value;
+            document.getElementById('escrowSection').style.display = method === 'escrow' ? 'block' : 'none';
+            document.getElementById('directSection').style.display = method === 'direct' ? 'block' : 'none';
+            if (method === 'direct') {
+                document.getElementById('btcAddress').textContent = MY_BTC_ADDRESS; // YOUR ADDRESS HERE, FULL DISPLAY
+            }
+        }
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const txid = document.getElementById('txid').value.trim();
+            if (txid && !/^[a-fA-F0-9]{64}$/.test(txid)) {
+                alert('Invalid TXID: Must be exactly 64 hex chars (0-9, a-f).');
+                return;
+            }
+            alert(`Order submitted via ${document.getElementById('paymentMethod').value}! Escrow ID: ${escrowId}\nEmail for follow-up. Shipping 2-6 days.`);
+            closeOrder();
+        });
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) closeOrder();
+        });
+        // TXID AUTO-CHECKER (GREEN/RED ON PASTE)
+        const txidInput = document.getElementById('txid');
+        const txidStatus = document.createElement('small');
+        txidStatus.className = 'txid-status';
+        txidInput.after(txidStatus);
+        txidInput.addEventListener('input', function() {
+            const val = this.value.trim();
+            if (val === '') {
+                txidStatus.innerHTML = '';
+            } else if (/^[a-fA-F0-9]{64}$/.test(val)) {
+                txidStatus.innerHTML = '<span style="color: var(--success);">Valid TXID</span>';
+            } else {
+                txidStatus.innerHTML = '<span style="color: var(--danger);">Invalid TXID</span>';
+            }
+        });
+    </script>
+</body>
+</html>
